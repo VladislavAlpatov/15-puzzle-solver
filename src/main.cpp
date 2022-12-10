@@ -41,8 +41,8 @@ int main()
     field.move_and_lock(7,{2.f, 1.f});
 
 
-    field.move_and_lock(13, {0.f, 3.f});
+    /*field.move_and_lock(13, {0.f, 3.f});
     field.move_and_lock(9, {0.f, 2.f});
     field.move_and_lock(14, {1.f, 2.f});
-    field.move_and_lock(10, {2.f, 2.f});
+    field.move_and_lock(10, {2.f, 2.f});*/
 }
