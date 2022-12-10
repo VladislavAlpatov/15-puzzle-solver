@@ -5,7 +5,7 @@
 #include "vector"
 #include <cmath>
 #include "Tile.h"
-
+#include "windows.h"
 namespace game
 {
     class Vec2
@@ -62,6 +62,14 @@ namespace game
         void move_and_lock(int iVal, const Vec2& end);
         void normalize_first_line();
         void resets_tiles_visited_state();
+
+        template<typename T>
+        void pswap(T& a, T& b)
+        {
+            Print();
+            std::swap(a, b);
+            Sleep(200);
+        }
     };
 
 } // game

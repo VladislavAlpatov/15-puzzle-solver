@@ -8,14 +8,15 @@
 
 namespace game
 {
+
     Field::Field()
     {
         m_raw.reserve(4);
 
-        m_raw.push_back({Tile(0), Tile(4), Tile(9), Tile(6)});
-        m_raw.push_back({Tile(1), Tile(3), Tile(14), Tile(12)});
-        m_raw.push_back({Tile(8), Tile(10), Tile(2), Tile(15)});
-        m_raw.push_back({Tile(7), Tile(13), Tile(11), Tile(5)});
+        m_raw.push_back({Tile(2), Tile(15), Tile(7), Tile(5)});
+        m_raw.push_back({Tile(0), Tile(14), Tile(10), Tile(6)});
+        m_raw.push_back({Tile(4), Tile(11), Tile(9), Tile(1)});
+        m_raw.push_back({Tile(13), Tile(8), Tile(3), Tile(12)});
     }
 
     void Field::Print()
@@ -80,10 +81,19 @@ namespace game
             at(currentPoint).m_bVisited = true;
             auto neighbors = GetNeighbors(currentPoint);
 
+            if (neighbors.empty())
+            {
+                path = {from};
+                currentPoint = from;
+                continue;
+            }
+
             std::sort(neighbors.begin(), neighbors.end(), [to, from](const Vec2& first, const Vec2& second) -> bool
             {
                 return first.DistanceTo(to) < second.DistanceTo(to);
             } );
+
+
             currentPoint = neighbors.at(0);
             path.push_back(currentPoint);
         }
@@ -100,7 +110,7 @@ namespace game
 
         for (int i = 0; i < path.size()-1; ++i)
         {
-            std::swap(at(path[i]), at(path[i+1]));
+            pswap(at(path[i]), at(path[i+1]));
         }
     }
 
@@ -118,7 +128,7 @@ namespace game
         for (size_t i = 0; i < path.size()-1;i++)
         {
             move_empty(path[i+1]);
-            std::swap(at(path[i]), at(path[i+1]));
+            pswap(at(path[i]), at(path[i+1]));
         }
 
         at(startPos).m_bLock = false;
