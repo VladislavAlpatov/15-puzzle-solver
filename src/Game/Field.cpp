@@ -81,6 +81,7 @@ namespace game
             at(currentPoint).m_bVisited = true;
             auto neighbors = GetNeighbors(currentPoint);
 
+            // This check fixes bug when algorithm choose randomly path that has dead end
             if (neighbors.empty())
             {
                 path = {from};
