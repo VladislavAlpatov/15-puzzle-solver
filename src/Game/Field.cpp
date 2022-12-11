@@ -13,10 +13,10 @@ namespace game
     {
         m_raw.reserve(4);
 
-        m_raw.push_back({Tile(2), Tile(9), Tile(14), Tile(8)});
-        m_raw.push_back({Tile(13), Tile(5), Tile(15), Tile(10)});
-        m_raw.push_back({Tile(11), Tile(4), Tile(12), Tile(6)});
-        m_raw.push_back({Tile(3), Tile(1), Tile(7), Tile(0)});
+        m_raw.push_back({Tile(5), Tile(7), Tile(6), Tile(4)});
+        m_raw.push_back({Tile(11), Tile(13), Tile(1), Tile(15)});
+        m_raw.push_back({Tile(10), Tile(3), Tile(8), Tile(14)});
+        m_raw.push_back({Tile(2), Tile(12), Tile(9), Tile(0)});
     }
 
     void Field::Print()
