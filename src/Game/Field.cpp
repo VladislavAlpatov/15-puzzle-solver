@@ -13,10 +13,10 @@ namespace game
     {
         m_raw.reserve(4);
 
-        m_raw.push_back({Tile(15), Tile(6), Tile(7), Tile(1)});
-        m_raw.push_back({Tile(4), Tile(3), Tile(13), Tile(12)});
-        m_raw.push_back({Tile(2), Tile(5), Tile(14), Tile(0)});
-        m_raw.push_back({Tile(9), Tile(8), Tile(10), Tile(11)});
+        m_raw.push_back({Tile(2), Tile(9), Tile(14), Tile(8)});
+        m_raw.push_back({Tile(13), Tile(5), Tile(15), Tile(10)});
+        m_raw.push_back({Tile(11), Tile(4), Tile(12), Tile(6)});
+        m_raw.push_back({Tile(3), Tile(1), Tile(7), Tile(0)});
     }
 
     void Field::Print()
@@ -117,13 +117,15 @@ namespace game
     void Field::move(int iVal, const Vec2 &end)
     {
         auto startPos = FindTile(iVal);
-
         const auto path = CalcPath(startPos, end);
 
-        at(startPos).m_bLock = true;
+        at(iVal).m_bLock = true;
 
         if (path.size() <= 1)
+        {
+            at(startPos).m_bLock = false;
             return;
+        }
 
         for (size_t i = 0; i < path.size()-1;i++)
         {
@@ -131,7 +133,7 @@ namespace game
             pswap(at(path[i]), at(path[i+1]));
         }
 
-        at(startPos).m_bLock = false;
+        at(iVal).m_bLock = false;
     }
 
     Tile &Field::at(const int iVal)

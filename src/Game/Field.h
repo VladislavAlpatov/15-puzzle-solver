@@ -68,7 +68,7 @@ namespace game
         {
             Print();
             std::swap(a, b);
-            Sleep(150);
+            Sleep(1000);
             Print();
         }
     };
