@@ -44,6 +44,7 @@ int main()
     field.move_and_lock(9, {0.f, 2.f});
 
     // Getting 14 and 10 ready
+    field.move(10, {3.f,3.f});
     field.move_and_lock(14, {1.f,2.f});
     field.move_and_lock(10, {2.f,2.f});
 
@@ -53,5 +54,7 @@ int main()
 
     field.move_and_lock(11, {2.f,2.f});
     field.move_and_lock(12, {3.f,2.f});
+    field.move_and_lock(15, {2.f,3.f});
+
 
 }
