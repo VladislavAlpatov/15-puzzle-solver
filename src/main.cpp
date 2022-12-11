@@ -3,7 +3,6 @@
 //
 #include "Game/Field.h"
 #include <stdio.h>
-#include "windows.h"
 
 int main()
 {
@@ -21,9 +20,7 @@ int main()
 
     // Fix first line right corner
     field.move_empty({3.f, 0.f});
-    field.at(4).m_bLock = false;
     field.move_and_lock(4,{3.f, 0.f});
-    field.at(3).m_bLock = false;
     field.move_and_lock(3,{2.f, 0.f});
 
     // Make second line ready
@@ -35,14 +32,26 @@ int main()
 
     // Fix second line corner
     field.move_empty({3.f, 1.f});
-    field.at(8).m_bLock = false;
     field.move_and_lock(8,{3.f, 1.f});
-    field.at(7).m_bLock = false;
     field.move_and_lock(7,{2.f, 1.f});
 
+    // Getting bottom corner ready
+    field.move_and_lock(13,{0.f, 2.f});
+    field.move_and_lock(9,{1.f, 2.f});
 
-    /*field.move_and_lock(13, {0.f, 3.f});
+    // Fix bottom corner
+    field.move_and_lock(13, {0.f,3.f});
     field.move_and_lock(9, {0.f, 2.f});
-    field.move_and_lock(14, {1.f, 2.f});
-    field.move_and_lock(10, {2.f, 2.f});*/
+
+    // Getting 14 and 10 ready
+    field.move_and_lock(14, {1.f,2.f});
+    field.move_and_lock(10, {2.f,2.f});
+
+    // Fix 14 and 10
+    field.move_and_lock(14, {1.f,3.f});
+    field.move_and_lock(10, {1.f,2.f});
+
+    field.move_and_lock(11, {2.f,2.f});
+    field.move_and_lock(12, {3.f,2.f});
+
 }

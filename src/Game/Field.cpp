@@ -13,10 +13,10 @@ namespace game
     {
         m_raw.reserve(4);
 
-        m_raw.push_back({Tile(2), Tile(15), Tile(7), Tile(5)});
-        m_raw.push_back({Tile(0), Tile(14), Tile(10), Tile(6)});
-        m_raw.push_back({Tile(4), Tile(11), Tile(9), Tile(1)});
-        m_raw.push_back({Tile(13), Tile(8), Tile(3), Tile(12)});
+        m_raw.push_back({Tile(15), Tile(6), Tile(7), Tile(1)});
+        m_raw.push_back({Tile(4), Tile(3), Tile(13), Tile(12)});
+        m_raw.push_back({Tile(2), Tile(5), Tile(14), Tile(0)});
+        m_raw.push_back({Tile(9), Tile(8), Tile(10), Tile(11)});
     }
 
     void Field::Print()
@@ -143,11 +143,6 @@ namespace game
     {
         move(iVal,end);
         at(iVal).m_bLock = true;
-    }
-
-    void Field::normalize_first_line()
-    {
-        //std::swap(at({3.f, 0.f}), at(3))
     }
 
     void Field::resets_tiles_visited_state()
