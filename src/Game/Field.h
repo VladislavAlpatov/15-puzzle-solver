@@ -49,7 +49,9 @@ namespace game
     {
     public:
         Field();
-        void Print();
+        void solve();
+    private:
+        void print();
         Tile& at(const Vec2& pos);
         Tile& at(const int iVal);
         const Tile& at(const Vec2& pos) const;
@@ -66,10 +68,10 @@ namespace game
         template<typename T>
         void pswap(T& a, T& b)
         {
-            Print();
+            print();
             std::swap(a, b);
             Sleep(150);
-            Print();
+            print();
         }
     };
 
