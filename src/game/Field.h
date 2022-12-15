@@ -6,6 +6,9 @@
 #include <cmath>
 #include "Tile.h"
 #include "windows.h"
+#include <mutex>
+namespace gui {class Menu;}
+
 namespace game
 {
     class Vec2
@@ -47,31 +50,35 @@ namespace game
 
     class Field
     {
+        friend  gui::Menu;
     public:
         Field();
         void solve();
+        void mix();
+        float m_fDelay = 0.1f;
     private:
+        std::mutex m_mutexLock;
         void print();
         Tile& at(const Vec2& pos);
-        Tile& at(const int iVal);
+        Tile& at(int iVal);
         const Tile& at(const Vec2& pos) const;
-        std::vector<Vec2> GetNeighbors(const Vec2& pos);
-        Vec2 FindTile(int val) const;
+        std::vector<Vec2> get_valid_neighbors(const Vec2& pos);
+        Vec2 find_tile_cords_by_number(int val) const;
         std::vector<std::vector<Tile>> m_raw;
-        std::vector<Vec2> CalcPath(const Vec2& from, const Vec2& to);
+        std::vector<Vec2> calc_path(const Vec2& from, const Vec2& to);
         void move_empty(const Vec2& end);
         void move(int iVal, const Vec2& end);
         void move_and_lock(int iVal, const Vec2& end);
-        void normalize_first_line();
         void resets_tiles_visited_state();
-
+        void resets_tiles_lock_state();
         template<typename T>
-        void pswap(T& a, T& b)
+        void print_and_swap(T& a, T& b)
         {
-            print();
+            Sleep(m_fDelay*1000);
+
+            std::lock_guard gurad(m_mutexLock);
             std::swap(a, b);
-            Sleep(150);
-            print();
+
         }
     };
 
