@@ -142,8 +142,8 @@ namespace gui
             {
                 TranslateMessage(&msg);
                 DispatchMessage(&msg);
-                if (msg.message == WM_QUIT)
-                    return;
+                if (msg.message == WM_QUIT or GetAsyncKeyState(VK_ESCAPE))
+                    exit(0);
             }
 
             ImGui_ImplDX9_NewFrame();
@@ -184,6 +184,7 @@ namespace gui
         {
             static bool bBusy = false;
             ImGui::SetWindowPos({410, 25});
+            ImGui::SetWindowSize({140, 300});
             if (ImGui::Button("SOLVE") and !bBusy)
                 std::thread([this](bool *pFlag)
                 {
